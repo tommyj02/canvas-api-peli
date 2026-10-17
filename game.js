@@ -38,8 +38,8 @@ let bulletSpeed = 300;
 let bullets = [];
 
 let enemyBullets = []; // Tehään vihuille omat luodit niin ei tarvii kikkailla sillä, että osuuko pelaajan oma luoti itseensä
-let enemyBulletSpeed = 100; 
-let enemyShootChance = 0.005; // Vihujen ampumisen todennäköisyys, ampuminen callataan joka frame eli täytyy olla pieni.
+let enemyBulletSpeed = 400; 
+let enemyShootChance = 0.001; // Vihujen ampumisen todennäköisyys, ampuminen callataan joka frame eli täytyy olla pieni.
 
 
 let roundOngoing = false;
