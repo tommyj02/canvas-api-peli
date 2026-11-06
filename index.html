@@ -3,10 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas API peli</title>
+    <title>Canvas API Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="score-display" aria-live="polite">Balance: <span id="balance">0</span></div>
+
+    <dialog id="pause-dialog" aria-labelledby="pause-title">
+        <h1 id="pause-title">Game Paused</h1>
+        <div id="pause-content">
+            <p>Balance: <span id="dialog-balance">0</span> points</p>
+            <div class="upgrades">
+                <section aria-labelledby="fire-rate-title">
+                    <h2 id="fire-rate-title">Fire Faster</h2>
+                    <div class="upgrade-options">
+                        <button type="button" data-upgrade="fire-rate" data-level="1">Level 1 · 10 points</button>
+                        <button type="button" data-upgrade="fire-rate" data-level="2">Level 2 · 50 points</button>
+                        <button type="button" data-upgrade="fire-rate" data-level="3">Level 3 · 100 points</button>
+                        <button type="button" data-upgrade="fire-rate" data-level="4">Level 4 · 500 points</button>
+                    </div>
+                </section>
+                <section aria-labelledby="movement-title">
+                    <h2 id="movement-title">Move Faster</h2>
+                    <div class="upgrade-options">
+                        <button type="button" data-upgrade="movement" data-level="1">Level 1 · 10 points</button>
+                        <button type="button" data-upgrade="movement" data-level="2">Level 2 · 50 points</button>
+                        <button type="button" data-upgrade="movement" data-level="3">Level 3 · 100 points</button>
+                        <button type="button" data-upgrade="movement" data-level="4">Level 4 · 500 points</button>
+                    </div>
+                </section>
+            </div>
+            <nav aria-label="Pause menu actions">
+                <button id="resume-button" type="button">Resume Game</button>
+            </nav>
+        </div>
+        <div id="game-over-content" hidden>
+            <p>You reached round <span id="final-round">1</span>.</p>
+            <p>Final balance: <span id="final-balance">0</span> points</p>
+            <button id="restart-button" type="button">Start a New Game</button>
+        </div>
+    </dialog>
 
     <script type="module" src="game.js"></script>
 
