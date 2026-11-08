@@ -104,11 +104,13 @@ let canvas = null;
 let context = null;
 
 
-let enemySize = 20;
+
 let enemySpeed = 100;
 let stars = [];
 const playerSpriteSize = 48;
+const actualPlayerSize = 36; // Suurinpiirtein pelaajan koko, koska itse kuva on pienempi kuin spriten koko.
 const enemySpriteSize = 48;
+const actualEnemySize = 32; // Suurinpiirtein vihollisen koko, koska itse kuva on pienempi kuin spriten koko.
 const enemyBulletSpriteSize = 36;
 const playerSprite = new Image();
 playerSprite.src = new URL('./01ship.png', import.meta.url);
@@ -268,6 +270,8 @@ function startNewGame() {
     player.speed = 100;
     player.x = window.innerWidth / 2;
     player.y = window.innerHeight / 2;
+    enemyShootChance = 0.001;
+    enemySpeed = 100;
     enemies = [];
     bullets = [];
     enemyBullets = [];
@@ -308,6 +312,8 @@ function roundHandler() {
         }
         round++; 
         enemyAmount += 5;
+        enemyShootChance += 0.00025;
+        enemySpeed += 10;
     }
 }
 
@@ -365,7 +371,7 @@ function handleEnemyMovement(deltaTime) {
             }
         }
         else{
-            const radius = enemySize / 2;
+            const radius = actualEnemySize / 2;
             const leftEdge = radius; // Lasketaan canvaksen rajat
             const rightEdge = canvas.width - radius; 
         
@@ -462,7 +468,7 @@ function checkPlayerCollision() {
 
         const distance = Math.hypot(dx, dy);
 
-        if (distance < playerSize) { 
+        if (distance < actualPlayerSize) { 
             finishGame();
             break;
         }
@@ -477,7 +483,7 @@ function checkBulletCollision() {
 
             const distance = Math.hypot(dx, dy);
 
-            if (distance < enemySize - bulletSize) {
+            if (distance < actualEnemySize - bulletSize) {
                 enemies.splice(enemies.indexOf(enemy), 1); //poistetaan vihollinen
                 bullets.splice(bullets.indexOf(bullet), 1); //poistetaan luoti
                 enemiesLeft--;
@@ -494,7 +500,7 @@ function checkBulletCollision() {
 
         const distance = Math.hypot(dx, dy);
 
-        if (distance < playerSize - bulletSize) {
+        if (distance < actualPlayerSize - bulletSize) {
             finishGame();
             break;
         }
